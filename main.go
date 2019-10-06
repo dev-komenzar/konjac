@@ -175,7 +175,8 @@ func main() {
     store := cookie.NewStore([]byte("secret"))
 	router.Use(sessions.Sessions("mysession", store))
     
-    db, err := gorm.Open("postgres", "host=127.0.0.1 port=5432 user=honey dbname=postgres password=password sslmode=disable")
+//     db, err := gorm.Open("postgres", "host=127.0.0.1 port=5432 user=honey dbname=postgres password=password sslmode=disable")
+    db, err := gorm.Open("postgres", "host=ec2-54-243-238-226.compute-1.amazonaws.com port=5432 user=ytpofwxgiublqv dbname=d864ilsvtlleo7 password=bbb1ff17f7203acd3953976e6b327df544e53092c9449b92c9b2a1ea4f1c2ccd sslmode=disable")
 	if err != nil {
     panic("データベースへの接続に失敗しました"+err.Error())
 	}
