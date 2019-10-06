@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>honyac konjac</title>
+    <link rel="stylesheet" href="style.css" >
+    <style type="text/css">
+      @import url("/templates/style.css");
+    </style>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0">
+</head>
+<body>
+	<header class="header">
+		<h1>honyac konjac</h1>
+        {{if .SessionInfo.IsSessionAlive}}
+        <li><a href="/my">{{.SessionInfo.Name}}</a></li>
+        <li><a href="/logout">ログアウト</a></li>
+        {{else}}
+        <li><a href="/signup">会員登録</a></li>
+        <li><a href="/login">ログイン</a></li>
+        {{end}}
+	</header>
+	<div class="contents">
+	   <h2>エラー</h2>
+	</div>
+    <footer><a href="/">ホーム</a></footer>
+</body>
+</html>
