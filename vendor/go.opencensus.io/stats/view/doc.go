@@ -29,7 +29,7 @@
 // LastValue just keeps track of the most recently recorded measurement value.
 // All aggregations are cumulative.
 //
-// Views can be registerd and unregistered at any time during program execution.
+// Views can be registered and unregistered at any time during program execution.
 //
 // Libraries can define views but it is recommended that in most cases registering
 // views be left up to applications.
@@ -41,7 +41,7 @@
 //
 // Multiple exporters can be registered to upload the data to various
 // different back ends.
-package view
+package view // import "go.opencensus.io/stats/view"
 
 // TODO(acetechnologist): Add a link to the language independent OpenCensus
 // spec when it is available.

@@ -1,0 +1,229 @@
+hash: 195f3dda01a070fb4c696e99457693806fbf07ada31fd7b0ebf498c914cad881
+updated: 2020-01-26T19:48:09.339218+09:00
+imports:
+- name: cloud.google.com/go
+  version: 6daa679260d92196ffca2362d652c924fdcb7a22
+  subpackages:
+  - compute/metadata
+  - longrunning
+  - longrunning/autogen
+  - translate/apiv3
+- name: github.com/gin-contrib/sessions
+  version: 4447bb3dfc826b56e604c19f52a6443ccfe7b28d
+  subpackages:
+  - cookie
+- name: github.com/gin-contrib/sse
+  version: 43f0f29dbd2b3f0feeebff91fd9cda22db296938
+- name: github.com/gin-gonic/gin
+  version: 15ced05c5316609bce5b43389f8e3f06102a8b18
+  subpackages:
+  - binding
+  - internal/json
+  - render
+- name: github.com/go-playground/locales
+  version: 9f105231d3a5f6877a2bf8321dfa15ea6f844b1b
+  subpackages:
+  - currency
+- name: github.com/go-playground/universal-translator
+  version: f87b1403479a348651dbf5f07f5cc6e5fcf07008
+- name: github.com/golang/groupcache
+  version: 8c9f03a8e57eb486e42badaed3fb287da51807ba
+  subpackages:
+  - lru
+- name: github.com/golang/protobuf
+  version: 4e55bbcbfaa105a596caba5bbc20d392806beda9
+  subpackages:
+  - proto
+  - protoc-gen-go/descriptor
+  - ptypes
+  - ptypes/any
+  - ptypes/duration
+  - ptypes/empty
+  - ptypes/timestamp
+- name: github.com/google/go-cmp
+  version: 5a6f75716e1203a923a78c9efb94089d857df0f6
+  subpackages:
+  - cmp
+  - cmp/internal/diff
+  - cmp/internal/flags
+  - cmp/internal/function
+  - cmp/internal/value
+- name: github.com/googleapis/gax-go
+  version: b443e5a67ec8eeac76f5f384004931878cab24b3
+  subpackages:
+  - v2
+- name: github.com/gorilla/context
+  version: 8559d4a6b87e4f517ec1846eb90a192b8748cc89
+- name: github.com/gorilla/securecookie
+  version: 61b4ad17eb88d0d1118560d1101176279be2bc88
+- name: github.com/gorilla/sessions
+  version: 15ff3511704639ab26f7843f780c015f4bf49565
+- name: github.com/jinzhu/gorm
+  version: 79a77d771dee4e4b60e9c543e8663bbc80466670
+  subpackages:
+  - dialects/postgres
+- name: github.com/jinzhu/inflection
+  version: f5c5f50e6090ae76a29240b61ae2a90dd810112e
+- name: github.com/json-iterator/go
+  version: 49c900ee46e6efa73ea31a4eef029bc0a19a1ed9
+- name: github.com/leodido/go-urn
+  version: a0f5013415294bb94553821ace21a1a74c0298cc
+- name: github.com/lib/pq
+  version: 9eb3fc897d6fd97dd4aad3d0404b54e2f7cc56be
+  subpackages:
+  - hstore
+  - oid
+  - scram
+- name: github.com/mattn/go-isatty
+  version: 28b35a325e89623a31764c9bcfb74f4e6c9f105c
+- name: github.com/modern-go/concurrent
+  version: bacd9c7ef1dd9b15be4a9909b8ac7a4e313eec94
+- name: github.com/modern-go/reflect2
+  version: 94122c33edd36123c84d5368cfb2b69df93a0ec8
+- name: github.com/ugorji/go
+  version: 42bc974514ff101a54c6b72a0e4dee29d96c0b26
+  subpackages:
+  - codec
+- name: go.opencensus.io
+  version: d851005f548fb76216358effa0fac2352fd15592
+  subpackages:
+  - internal
+  - internal/tagencoding
+  - metric/metricdata
+  - metric/metricproducer
+  - plugin/ocgrpc
+  - plugin/ochttp
+  - plugin/ochttp/propagation/b3
+  - resource
+  - stats
+  - stats/internal
+  - stats/view
+  - tag
+  - trace
+  - trace/internal
+  - trace/propagation
+  - trace/tracestate
+- name: golang.org/x/crypto
+  version: 530e935923ad688be97c15eeb8e5ee42ebf2b54a
+  subpackages:
+  - bcrypt
+  - blowfish
+- name: golang.org/x/net
+  version: 6afb5195e5aab057fda82e27171243402346b0ad
+  subpackages:
+  - context
+  - context/ctxhttp
+  - http/httpguts
+  - http2
+  - http2/hpack
+  - idna
+  - internal/timeseries
+  - trace
+- name: golang.org/x/oauth2
+  version: bf48bf16ab8d622ce64ec6ce98d2c98f916b6303
+  subpackages:
+  - google
+  - internal
+  - jws
+  - jwt
+- name: golang.org/x/sys
+  version: 9fbb57f87de9ccfe3a99d4e3270ce8a926ebba4f
+  subpackages:
+  - unix
+- name: golang.org/x/text
+  version: 342b2e1fbaa52c93f31447ad2c6abc048c63e475
+  subpackages:
+  - internal/language
+  - internal/language/compact
+  - internal/tag
+  - language
+  - secure/bidirule
+  - transform
+  - unicode/bidi
+  - unicode/norm
+- name: google.golang.org/api
+  version: aa5d4e47691e7ae1aebb5221ff8e4beea23fad72
+  subpackages:
+  - googleapi/transport
+  - internal
+  - iterator
+  - option
+  - transport
+  - transport/grpc
+  - transport/http
+  - transport/http/internal/propagation
+- name: google.golang.org/appengine
+  version: b6ce0843b556e44e6416df5c2fd05db0869cc8d4
+  subpackages:
+  - internal
+  - internal/app_identity
+  - internal/base
+  - internal/datastore
+  - internal/log
+  - internal/modules
+  - internal/remote_api
+  - internal/socket
+  - internal/urlfetch
+  - socket
+  - urlfetch
+- name: google.golang.org/genproto
+  version: 0452cf42e150a6aeb2c8615de02e260ae83d9873
+  subpackages:
+  - googleapis/api/annotations
+  - googleapis/cloud/translate/v3
+  - googleapis/longrunning
+  - googleapis/rpc/status
+- name: google.golang.org/grpc
+  version: 7afcfdd66b1241ed5a29e865d838ce19c57fc2d6
+  subpackages:
+  - attributes
+  - backoff
+  - balancer
+  - balancer/base
+  - balancer/grpclb
+  - balancer/grpclb/grpc_lb_v1
+  - balancer/roundrobin
+  - binarylog/grpc_binarylog_v1
+  - codes
+  - connectivity
+  - credentials
+  - credentials/alts
+  - credentials/alts/internal
+  - credentials/alts/internal/authinfo
+  - credentials/alts/internal/conn
+  - credentials/alts/internal/handshaker
+  - credentials/alts/internal/handshaker/service
+  - credentials/alts/internal/proto/grpc_gcp
+  - credentials/google
+  - credentials/internal
+  - credentials/oauth
+  - encoding
+  - encoding/proto
+  - grpclog
+  - internal
+  - internal/backoff
+  - internal/balancerload
+  - internal/binarylog
+  - internal/buffer
+  - internal/channelz
+  - internal/envconfig
+  - internal/grpcrand
+  - internal/grpcsync
+  - internal/resolver/dns
+  - internal/resolver/passthrough
+  - internal/syscall
+  - internal/transport
+  - keepalive
+  - metadata
+  - naming
+  - peer
+  - resolver
+  - serviceconfig
+  - stats
+  - status
+  - tap
+- name: gopkg.in/go-playground/validator.v9
+  version: 21c910fc6d9c3556c28252b04beb17de0c2d40ec
+- name: gopkg.in/yaml.v2
+  version: 53403b58ad1b561927d19068c655246f2db79d48
+testImports: []

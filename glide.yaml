@@ -1,0 +1,31 @@
+package: github.com/tuckKome/konjac
+import:
+- package: cloud.google.com/go
+  version: ^0.52.0
+  subpackages:
+  - translate/apiv3
+- package: github.com/gin-contrib/sessions
+  version: ^0.0.3
+  subpackages:
+  - cookie
+- package: github.com/gin-gonic/gin
+  version: ^1.5.0
+- package: github.com/jinzhu/gorm
+  version: ^1.9.12
+  subpackages:
+  - dialects/postgres
+- package: golang.org/x/crypto
+  subpackages:
+  - bcrypt
+- package: golang.org/x/oauth2
+- package: golang.org/x/text
+  version: ^0.3.2
+  subpackages:
+  - language
+- package: google.golang.org/api
+  version: ^0.15.0
+  subpackages:
+  - option
+- package: google.golang.org/genproto
+  subpackages:
+  - googleapis/cloud/translate/v3

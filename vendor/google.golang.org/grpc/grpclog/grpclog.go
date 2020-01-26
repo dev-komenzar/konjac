@@ -24,7 +24,7 @@
 // In the default logger,
 // severity level can be set by environment variable GRPC_GO_LOG_SEVERITY_LEVEL,
 // verbosity level can be set by GRPC_GO_LOG_VERBOSITY_LEVEL.
-package grpclog
+package grpclog // import "google.golang.org/grpc/grpclog"
 
 import "os"
 
@@ -89,7 +89,7 @@ func Fatal(args ...interface{}) {
 }
 
 // Fatalf logs to the FATAL log. Arguments are handled in the manner of fmt.Printf.
-// It calles os.Exit() with exit code 1.
+// It calls os.Exit() with exit code 1.
 func Fatalf(format string, args ...interface{}) {
 	logger.Fatalf(format, args...)
 	// Make sure fatal logs will exit.
