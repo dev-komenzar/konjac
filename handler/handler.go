@@ -11,7 +11,6 @@ import (
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
-	"google.golang.org/api/option"
 	translatepb "google.golang.org/genproto/googleapis/cloud/translate/v3"
 
 	"github.com/tuckKome/konjac/db"
@@ -153,8 +152,7 @@ func GetTranslation(c *gin.Context) {
 	texts := []string{text}
 
 	// Clientをつくる
-	apiKey := getEnv("GOOGLE_API_KEY", "")
-	client, err := translate.NewTranslationClient(c, option.WithAPIKey(apiKey))
+	client, err := translate.NewTranslationClient(c)
 	if err != nil {
 		log.Fatalf("Failed to create client: %v", err)
 	}
