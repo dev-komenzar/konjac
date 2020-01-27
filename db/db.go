@@ -39,8 +39,8 @@ func getEnv(key, fallback string) string {
 func connectInit() string {
 	host := getEnv("DB_HOST", "127.0.0.1")
 	port := getEnv("DB_PORT", "5432")
-	user := getEnv("DB_USER", "")
-	dbname := getEnv("DB_NAME", "histories")
+	user := getEnv("DB_USER", "taku")
+	dbname := getEnv("DB_NAME", "postgres")
 	password := getEnv("DB_PASS", "password")
 	sslmode := getEnv("DB_SSLMODE", "disable")
 
