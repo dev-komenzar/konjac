@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{.odai}}｜honyac-konyac</title>
+        <title>honyac-konyac</title>
         <!-- BootstrapのCSS読み込み -->
         <link href="/bootstrap-4/css/bootstrap.min.css" rel="stylesheet">
         <!-- jQuery読み込み -->
@@ -13,17 +13,38 @@
         <script src="/bootstrap-4/js/bootstrap.min.js"></script>
     </head>
 <body>
-	<header class="header">
-		<h1><a href="/">honyac konjac</a></h1>
-        {{if .SessionInfo.IsSessionAlive}}
-        <li><a href="/my">{{.SessionInfo.Name}}</a></li>
-        <li><a href="/logout">ログアウト</a></li>
-        {{else}}
-        <li><a href="/signup">会員登録</a></li>
-        <li><a href="/login">ログイン</a></li>
-        {{end}}
-	</header>
-	<div class="contents">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="/">honyac konjac</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="ナビゲーションの切替">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarText">
+            <ul class="navbar-nav">
+                {{if .SessionInfo.IsSessionAlive}}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">ホーム <span class="sr-only">(現位置)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/my">{{.SessionInfo.Name}}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">ログアウト</a>
+                </li>
+                {{else}}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">ホーム <span class="sr-only">(現位置)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">会員登録</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">ログイン</a>
+                </li>
+                {{end}}
+            </ul>
+        </div>
+    </nav>
+	<div class="container">
         {{ template "content" .}}
 	</div>
 </body>
