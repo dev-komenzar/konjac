@@ -36,15 +36,16 @@ type MyHis struct {
 }
 
 type pair struct {
-	language string
+	Language string
 	code     string
+	Response string
 }
 
 type translationSet struct {
 	text      string
-	languages []string
+	Languages []string
 	codes     []string
-	responses []string
+	Responses []string
 }
 
 func Logout(c *gin.Context) {
@@ -112,45 +113,46 @@ func New(c *gin.Context) {
 
 func GetTranslation(c *gin.Context) {
 	pairs := []pair{
-		{"日本語", "ja"},
-		{"英語", "en"},
-		{"ドイツ語", "de"},
-		{"アイルランド語", "ga"},
-		{"アラビア語", "ar"},
-		{"ギリシャ語", "el"},
-		{"エスペラント", "eo"},
-		{"スペイン語", "es"},
-		{"フランス語", "fr"},
-		{"イタリア語", "it"},
-		{"オランダ語", "nl"},
-		{"アフリカーンス語", "af"},
-		{"フィンランド語", "fi"},
-		{"スウェーデン語", "sv"},
-		{"ノルウェー語", "no"},
-		{"アイスランド語", "is"},
-		{"ロシア語", "ru"},
-		{"ポーランド語", "pl"},
-		{"ブルガリア語", "bg"},
-		{"ウクライナ語", "uk"},
-		{"キルギス語", "ky"},
-		{"トルコ語", "tr"},
-		{"スワヒリ語", "sw"},
+		{"日本語", "ja", ""},
+		{"英語", "en", ""},
+		{"ドイツ語", "de", ""},
+		{"アイルランド語", "ga", ""},
+		{"アラビア語", "ar", ""},
+		{"ギリシャ語", "el", ""},
+		{"エスペラント", "eo", ""},
+		{"スペイン語", "es", ""},
+		{"フランス語", "fr", ""},
+		{"イタリア語", "it", ""},
+		{"オランダ語", "nl", ""},
+		{"アフリカーンス語", "af", ""},
+		{"フィンランド語", "fi", ""},
+		{"スウェーデン語", "sv", ""},
+		{"ノルウェー語", "no", ""},
+		{"アイスランド語", "is", ""},
+		{"ロシア語", "ru", ""},
+		{"ポーランド語", "pl", ""},
+		{"ブルガリア語", "bg", ""},
+		{"ウクライナ語", "uk", ""},
+		{"キルギス語", "ky", ""},
+		{"トルコ語", "tr", ""},
+		{"スワヒリ語", "sw", ""},
 	}
 
-	var languages []string
-	for i := range languages {
+	languages := make([]string, len(pairs))
+	for i := range pairs {
 		languages[i] = pairs[i].language
 	}
-	var codes []string
-	for i := range languages {
+	codes := make([]string, len(pairs))
+	for i := range pairs {
 		codes[i] = pairs[i].code
 	}
-	transSet := translationSet{languages: languages, codes: codes}
+	responses := make([]string, len(pairs))
+	transSet := translationSet{Languages: languages, codes: codes, Responses: responses}
 
 	text := c.Param("text")
 	transSet.text = text
 	texts := []string{text}
-
+	fmt.Println(transSet)
 	// Clientをつくる
 	client, err := translate.NewTranslationClient(c)
 	if err != nil {
@@ -158,17 +160,11 @@ func GetTranslation(c *gin.Context) {
 	}
 	defer client.Close()
 
-	for i := range languages {
-		/* v3で不要になった？
-		target, err := language.Parse(transSet.codes[i])
-		if err != nil {
-			log.Fatalf("Failed to parse target language: %v", err)
-		}
-		*/
+	for i := range pairs {
 
 		request := &translatepb.TranslateTextRequest{
 			Contents:           texts,
-			TargetLanguageCode: transSet.codes[i],
+			TargetLanguageCode: pairs[i].code,
 			Parent:             "projects/honyac-konjac",
 		}
 
@@ -176,9 +172,9 @@ func GetTranslation(c *gin.Context) {
 		if err != nil {
 			log.Fatalf("Failed to translate text: %v", err)
 		}
-		transSet.responses[i] = translation.Translations[0].GetTranslatedText()
+		pairs[i].Response = translation.Translations[0].GetTranslatedText()
 	}
-
+	fmt.Println(pairs) //デバッグ用
 	// 履歴に残すために
 	info := GetSessionInfo(c)
 	if info.IsSessionAlive == true {
@@ -194,7 +190,7 @@ func GetTranslation(c *gin.Context) {
 
 	c.HTML(200, "translations.html", gin.H{
 		"text":        text,
-		"languages":   languages,
+		"Translation": pairs,
 		"SessionInfo": info,
 	})
 }
