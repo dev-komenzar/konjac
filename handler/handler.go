@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strings"
 	"time"
 
 	translate "cloud.google.com/go/translate/apiv3"
@@ -16,23 +15,10 @@ import (
 	"github.com/tuckKome/konjac/db"
 )
 
-type LangSet struct {
-	Language string
-	Tag      string `gorm:"type:varchar(10);unique_index"`
-	Kotae    string
-}
-
-type SessionInfo struct {
+type sessionInfo struct {
 	UserID         int
 	Name           string //ログインしているユーザの表示名
 	IsSessionAlive bool   //セッションが生きているかどうか
-}
-
-type MyHis struct {
-	Name  string
-	Email string
-	Word  string
-	Lngs  string
 }
 
 type pair struct {
@@ -41,13 +27,7 @@ type pair struct {
 	Response string
 }
 
-type translationSet struct {
-	text      string
-	Languages []string
-	codes     []string
-	Responses []string
-}
-
+//Logout let user log out. Clear session
 func Logout(c *gin.Context) {
 	session := sessions.Default(c)
 	log.Println("セッション取得")
@@ -57,6 +37,7 @@ func Logout(c *gin.Context) {
 	c.Redirect(302, "/")
 }
 
+// Login writes user info to session
 func Login(c *gin.Context, u db.User) {
 	session := sessions.Default(c)
 	session.Set("Name", u.Name)
@@ -64,17 +45,18 @@ func Login(c *gin.Context, u db.User) {
 	session.Save()
 }
 
-func GetSessionInfo(c *gin.Context) SessionInfo {
-	var info SessionInfo
+//getSessionInfo get current user info
+func getSessionInfo(c *gin.Context) sessionInfo {
+	var info sessionInfo
 	session := sessions.Default(c)
 	userID := session.Get("UserID")
 	userName := session.Get("Name")
 	if userID == nil {
-		info = SessionInfo{
+		info = sessionInfo{
 			UserID: -1, Name: "", IsSessionAlive: false,
 		}
 	} else {
-		info = SessionInfo{
+		info = sessionInfo{
 			UserID:         userID.(int),
 			Name:           userName.(string),
 			IsSessionAlive: true,
@@ -84,12 +66,6 @@ func GetSessionInfo(c *gin.Context) SessionInfo {
 	return info
 }
 
-func Replace(s string) string {
-	s = strings.Replace(s, "&lt;", "<", -1)
-	s = strings.Replace(s, "&gt;", "<", -1)
-	return s
-}
-
 func getEnv(key, fallback string) string {
 	if value, ok := os.LookupEnv(key); ok {
 		return value
@@ -97,20 +73,22 @@ func getEnv(key, fallback string) string {
 	return fallback
 }
 
+//Index show index page
 func Index(c *gin.Context) {
-	info := GetSessionInfo(c)
-
+	info := getSessionInfo(c)
 	c.HTML(200, "index.html", gin.H{
-		"SessionInfo": info,
+		"sessionInfo": info,
 	})
 }
 
+//New tell GetTranslation what is the word to translate
 func New(c *gin.Context) {
 	text := c.PostForm("word")
 	uri := fmt.Sprintf("/translate/%s", text)
 	c.Redirect(302, uri)
 }
 
+//GetTranslation translate word using google cloud translate
 func GetTranslation(c *gin.Context) {
 	pairs := []pair{
 		{"日本語", "ja", ""},
@@ -164,7 +142,7 @@ func GetTranslation(c *gin.Context) {
 	}
 	fmt.Println(pairs) //デバッグ用
 	// 履歴に残すために
-	info := GetSessionInfo(c)
+	info := getSessionInfo(c)
 	if info.IsSessionAlive == true {
 		var history db.History
 		history.Word = text
@@ -184,7 +162,7 @@ func GetTranslation(c *gin.Context) {
 }
 
 func GetLogin(c *gin.Context) {
-	info := GetSessionInfo(c)
+	info := getSessionInfo(c)
 	c.HTML(200, "login.html", gin.H{
 		"SessionInfo": info,
 	})
@@ -205,7 +183,7 @@ func PostLogin(c *gin.Context) {
 }
 
 func GetSignup(c *gin.Context) {
-	info := GetSessionInfo(c)
+	info := getSessionInfo(c)
 	c.HTML(200, "signup.html", gin.H{
 		"SessionInfo": info,
 	})
@@ -232,7 +210,7 @@ func PostSignup(c *gin.Context) {
 }
 
 func GetMy(c *gin.Context) {
-	info := GetSessionInfo(c)
+	info := getSessionInfo(c)
 	history := db.GetHistory(info.UserID)
 
 	c.HTML(200, "my.html", gin.H{
@@ -242,7 +220,7 @@ func GetMy(c *gin.Context) {
 }
 
 func GetError(c *gin.Context) {
-	info := GetSessionInfo(c)
+	info := getSessionInfo(c)
 
 	c.HTML(200, "error.html", gin.H{
 		"SessionInfo": info,
