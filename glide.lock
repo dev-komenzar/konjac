@@ -1,5 +1,5 @@
-hash: 195f3dda01a070fb4c696e99457693806fbf07ada31fd7b0ebf498c914cad881
-updated: 2020-01-26T19:48:09.339218+09:00
+hash: f935aef540e990517b4dab5a881d1247e9e1d3755fce61400756b9a1aabc767d
+updated: 2020-01-27T20:42:45.11797+09:00
 imports:
 - name: cloud.google.com/go
   version: 6daa679260d92196ffca2362d652c924fdcb7a22
@@ -8,6 +8,8 @@ imports:
   - longrunning
   - longrunning/autogen
   - translate/apiv3
+- name: github.com/gin-contrib/multitemplate
+  version: 95dee0dedf35ff52b4f3c94904630e5be19c055e
 - name: github.com/gin-contrib/sessions
   version: 4447bb3dfc826b56e604c19f52a6443ccfe7b28d
   subpackages:
@@ -133,9 +135,6 @@ imports:
 - name: golang.org/x/text
   version: 342b2e1fbaa52c93f31447ad2c6abc048c63e475
   subpackages:
-  - internal/language
-  - internal/language/compact
-  - internal/tag
   - language
   - secure/bidirule
   - transform

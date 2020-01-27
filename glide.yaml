@@ -29,3 +29,4 @@ import:
 - package: google.golang.org/genproto
   subpackages:
   - googleapis/cloud/translate/v3
+- package: github.com/gin-contrib/multitemplate
