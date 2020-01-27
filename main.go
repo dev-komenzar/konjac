@@ -5,16 +5,18 @@ import (
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 
-	_ "github.com/jinzhu/gorm/dialects/postgres"
-
+	"github.com/tuckKome/konjac/db"
 	"github.com/tuckKome/konjac/handler"
+	"github.com/tuckKome/konjac/render"
 )
 
 func main() {
-
+	db.Init()
 	router := gin.Default()
 	router.Static("/templates", "./templates")
-	router.LoadHTMLGlob("templates/*.html") // 事前にテンプレートをロード 相対パス
+	router.Static("/bootstrap-4", "./bootstrap-4")
+
+	router.HTMLRender = render.LoadTemplates("./templates") // 事前にテンプレートをロード multitemplateで
 	store := cookie.NewStore([]byte("secret"))
 	router.Use(sessions.Sessions("mysession", store))
 
