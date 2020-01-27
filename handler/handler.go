@@ -138,21 +138,9 @@ func GetTranslation(c *gin.Context) {
 		{"スワヒリ語", "sw", ""},
 	}
 
-	languages := make([]string, len(pairs))
-	for i := range pairs {
-		languages[i] = pairs[i].language
-	}
-	codes := make([]string, len(pairs))
-	for i := range pairs {
-		codes[i] = pairs[i].code
-	}
-	responses := make([]string, len(pairs))
-	transSet := translationSet{Languages: languages, codes: codes, Responses: responses}
-
 	text := c.Param("text")
-	transSet.text = text
 	texts := []string{text}
-	fmt.Println(transSet)
+	fmt.Println(pairs)
 	// Clientをつくる
 	client, err := translate.NewTranslationClient(c)
 	if err != nil {
