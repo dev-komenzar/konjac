@@ -1,0 +1,10 @@
+{{define "content"}}
+<h2>あなたがこれまでに翻訳した言葉は</h2>
+{{ range .History}}
+<table align="center">
+    <tr>
+        <td>{{ . }}</td>
+    </tr>
+</table>
+{{end}}
+{{end}}

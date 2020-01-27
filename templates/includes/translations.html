@@ -1,0 +1,12 @@
+{{define "content"}}
+<h2>翻訳しました!!!</h2>
+<p>元の言葉： {{.text}} </p>
+<table align="center">
+    {{ range .Translation }}
+    <tr>
+        <td>{{ .Language }}</td>
+        <td>{{ .Response }}</td>
+    </tr>
+    {{end}}
+</table>
+{{end}}
