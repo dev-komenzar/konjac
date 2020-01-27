@@ -1,10 +1,14 @@
 {{define "content"}}
 <h2>ログイン</h2>
 <form method="post" action="/login">
-    e-mail<br>
-    <input type="text" name="email"><br>
-    Password<br>
-    <input type="password" name="password"><br>
-    <input type="submit" value="ログイン">
+    <div class="form-group">
+        <label for="inputEmail">E-MAIL ADDRESS</label>
+        <input type="email" class="form-control" name="email" id="inputEmail" placeholder="kumano@example.ryo">
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">PASSWORD</label>
+        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password"><br>
+    </div>
+    <button type="submit" class="btn btn-primary">送信する</button>
 </form>
 {{end}}

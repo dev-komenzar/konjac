@@ -1,12 +1,18 @@
 {{define "content"}}
 <h2>新規登録</h2>
-    <form method="post" action="/signup">
-    ユーザー名<br>
-    <input type="text" name="newName"><br>
-    メールアドレス<br>
-    <input type="text" name="newEmail"><br>
-    パスワード<br>
-    <input type="password" name="password"><br>
-    <input type="submit" value="登録">
+<form method="post" action="/signup">
+    <div class="form-group">
+        <label for="inputName">USER NAME</label>
+        <input type="text" class="form-control" name="newName" id="inputName" placeholder="Kumataroh">
+    </div>
+    <div class="form-group">
+        <label for="inputEmail">E-MAIL ADDRESS</label>
+        <input type="email" class="form-control" name="newEmail" id="inputEmail" placeholder="kumano@example.ryo">
+    </div>
+    <div class="form-group">
+        <label for="inputPassword">PASSWORD</label>
+        <input type="password" class="form-control" name="password" id="inputPassword" placeholder="password"><br>
+    </div>
+    <button type="submit" class="btn btn-primary">登録する</button>
 </form>
 {{end}}
