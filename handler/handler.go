@@ -23,7 +23,7 @@ type sessionInfo struct {
 
 type pair struct {
 	Language string
-	code     string
+	Code     string
 	Response string
 }
 
@@ -88,7 +88,8 @@ func New(c *gin.Context) {
 	c.Redirect(302, uri)
 }
 
-//GetTranslation translate word using google cloud translate
+//GetTranslation translate word using google cloud translate.
+//If you update languages, update template file also.
 func GetTranslation(c *gin.Context) {
 	pairs := []pair{
 		{"日本語", "ja", ""},
@@ -130,7 +131,7 @@ func GetTranslation(c *gin.Context) {
 
 		request := &translatepb.TranslateTextRequest{
 			Contents:           texts,
-			TargetLanguageCode: pairs[i].code,
+			TargetLanguageCode: pairs[i].Code,
 			Parent:             "projects/honyac-konjac",
 		}
 
