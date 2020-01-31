@@ -11,6 +11,11 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- BootstrapのJS読み込み -->
         <script src="/bootstrap-4/js/bootstrap.min.js"></script>
+        {{ if .jsmind}}
+        <link type="text/css" rel="stylesheet" href="/jsmind/style/jsmind.css" />
+        <link type="text/css" rel="stylesheet" href="/jsmind/style/style.css" />
+        <script type="text/javascript" src="/jsmind/js/jsmind.js"></script>
+        {{ end }}
     </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">

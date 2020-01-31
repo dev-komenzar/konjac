@@ -1,7 +1,9 @@
 {{define "content"}}
-<link type="text/css" rel="stylesheet" href="/jsmind/style/jsmind.css" />
-<script type="text/javascript" src="/jsmind/js/jsmind.js"></script>
-<div id="jsmind_container"></div>
+</div>
+<div class="container mw-100">
+  <div id="jsmind_container"></div>
+</div>
+<div class="container mt-3">
 <p>元の言葉： {{.text}}</p>
 <table class="table table-hover">
   {{ range .Translation }}
@@ -23,14 +25,14 @@
       data: [
         {id:"root", isroot: true, topic: "元の言葉：" + {{.text}} },
 
-        {id:"pie", parentid:"root", topic:"インド・ヨーロッパ語族", direction:"left"}
+        {id:"pie", parentid:"root", topic:"インド・ヨーロッパ語族", direction:"left"},
           {id:"germanic", parentid:"pie", topic:"ゲルマン語派"},
           {id:"celtic", parentid:"pie", topic: "ケルト語派"},
           {id:"italic", parentid:"pie", topic:"イタリック語派"},
           {id:"hellenic", parentid:"pie", topic:"ヘレニック語派"},
           {id:"baltic-slavic", parentid:"pie", topic:"バルト・スラブ語派"},
           {id:"indo-iranian", parentid:"pie", topic:"インド・イラン語派"},
-        {id:"uralic", parentid:"root" topic:"ウラル語族", direction:"left"},
+        {id:"uralic", parentid:"root", topic:"ウラル語族", direction:"left"},
         {id:"turkic", parentid:"root", topic:"テュルク語族"},
         {id:"niger-congo", parentid:"root", topic:"ニジェール・コンゴ語族"},
         {id:"afro-asiatic", parentid:"root", topic:"アフロ・アジア語族"},
@@ -40,7 +42,7 @@
           parentid: {{ .Parent }},
           topic: "<div class='response'>" + {{ .Response }} + "</div>\n<div class='language'>" + {{ .Language }} + "</div>"
           },
-
+        {{ end }}
       ]
   };
   var options = {
