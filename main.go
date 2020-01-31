@@ -15,6 +15,7 @@ func main() {
 	router := gin.Default()
 	router.Static("/templates", "./templates")
 	router.Static("/bootstrap-4", "./bootstrap-4")
+	router.Static("/jsmind", "./jsmind")
 
 	router.HTMLRender = render.LoadTemplates("./templates") // 事前にテンプレートをロード multitemplateで
 	store := cookie.NewStore([]byte("secret"))
