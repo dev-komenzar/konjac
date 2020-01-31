@@ -24,6 +24,7 @@ type sessionInfo struct {
 type pair struct {
 	Language string
 	Code     string
+	Parent   string
 	Response string
 }
 
@@ -92,29 +93,29 @@ func New(c *gin.Context) {
 //If you update languages, update template file also.
 func GetTranslation(c *gin.Context) {
 	pairs := []pair{
-		{"日本語", "ja", ""},
-		{"英語", "en", ""},
-		{"ドイツ語", "de", ""},
-		{"アイルランド語", "ga", ""},
-		{"アラビア語", "ar", ""},
-		{"ギリシャ語", "el", ""},
-		{"エスペラント", "eo", ""},
-		{"スペイン語", "es", ""},
-		{"フランス語", "fr", ""},
-		{"イタリア語", "it", ""},
-		{"オランダ語", "nl", ""},
-		{"アフリカーンス語", "af", ""},
-		{"フィンランド語", "fi", ""},
-		{"スウェーデン語", "sv", ""},
-		{"ノルウェー語", "no", ""},
-		{"アイスランド語", "is", ""},
-		{"ロシア語", "ru", ""},
-		{"ポーランド語", "pl", ""},
-		{"ブルガリア語", "bg", ""},
-		{"ウクライナ語", "uk", ""},
-		{"キルギス語", "ky", ""},
-		{"トルコ語", "tr", ""},
-		{"スワヒリ語", "sw", ""},
+		{"日本語", "ja", "root", ""},
+		{"英語", "en", "germanic", ""},
+		{"ドイツ語", "de", "germanic", ""},
+		{"アイルランド語", "ga", "celtic", ""},
+		{"アラビア語", "ar", "afro-asiatic", ""},
+		{"ギリシャ語", "el", "hellenic", ""},
+		{"エスペラント", "eo", "root", ""},
+		{"スペイン語", "es", "italic", ""},
+		{"フランス語", "fr", "italic", ""},
+		{"イタリア語", "it", "italic", ""},
+		{"オランダ語", "nl", "germanic", ""},
+		{"アフリカーンス語", "af", "germanic", ""},
+		{"フィンランド語", "fi", "uralic", ""},
+		{"スウェーデン語", "sv", "germanic", ""},
+		{"ノルウェー語", "no", "germanic", ""},
+		{"アイスランド語", "is", "germanic", ""},
+		{"ロシア語", "ru", "balt-slavic", ""},
+		{"ポーランド語", "pl", "balt-slavic", ""},
+		{"ブルガリア語", "bg", "balt-slavic", ""},
+		{"ウクライナ語", "uk", "balt-slavic", ""},
+		{"キルギス語", "ky", "turkic", ""},
+		{"トルコ語", "tr", "turkic", ""},
+		{"スワヒリ語", "sw", "niger-congo", ""},
 	}
 
 	text := c.Param("text")
@@ -159,6 +160,7 @@ func GetTranslation(c *gin.Context) {
 		"text":        text,
 		"Translation": pairs,
 		"SessionInfo": info,
+		"jsmind":      true,
 	})
 }
 
