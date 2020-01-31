@@ -1,12 +1,42 @@
 {{define "content"}}
-<h2>翻訳しました!!!</h2>
-<p>元の言葉： {{.text}} </p>
+<link type="text/css" rel="stylesheet" href="/jsmind/style/jsmind.css" />
+<script type="text/javascript" src="/jsmind/js/jsmind.js"></script>
+<div id="jsmind_container"></div>
+<p>元の言葉： {{.text}}</p>
 <table class="table table-hover">
-    {{ range .Translation }}
-    <tr>
-        <td>{{ .Language }}</td>
-        <td>{{ .Response }}</td>
-    </tr>
-    {{end}}
+  {{ range .Translation }}
+  <tr>
+    <td>{{ .Language }}</td>
+    <td>{{ .Response }}</td>
+  </tr>
+  {{end}}
 </table>
+
+<script type="text/javascript">
+  var mind = {
+      meta: {
+          name: "jsMind Translation",
+          author: "takuya.kometan@gmail.com",
+          version: "0.2"
+      },
+      format: "node_tree",
+      data: {
+          id: "root",
+          topic: {{ .text }} ,
+          children: [
+              {{ range .Translation }}
+              {id: {{ .Code }}, topic: {{ .Response }} },
+              {{ end }}
+          ]
+      }
+  };
+  var options = {
+      container: "jsmind_container",
+      editable: true,
+      theme: "primary"
+  };
+  var jm = new jsMind(options);
+  // show it
+  jm.show(mind);
+</script>
 {{end}}
