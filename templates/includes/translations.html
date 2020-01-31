@@ -1,57 +1,59 @@
 {{define "content"}}
-</div>
-<div class="container mw-100">
-  <div id="jsmind_container"></div>
-</div>
-<div class="container mt-3">
-<p>元の言葉： {{.text}}</p>
-<table class="table table-hover">
-  {{ range .Translation }}
-  <tr>
-    <td>{{ .Language }}</td>
-    <td>{{ .Response }}</td>
-  </tr>
-  {{end}}
-</table>
-
-<script type="text/javascript">
-  var mind = {
-      meta: {
-          name: "jsMind Translation",
-          author: "takuya.kometan@gmail.com",
-          version: "0.2"
-      },
-      format: "node_array",
-      data: [
-        {id:"root", isroot: true, topic: "元の言葉：" + {{.text}} },
-
-        {id:"pie", parentid:"root", topic:"インド・ヨーロッパ語族", direction:"left"},
-          {id:"germanic", parentid:"pie", topic:"ゲルマン語派"},
-          {id:"celtic", parentid:"pie", topic: "ケルト語派"},
-          {id:"italic", parentid:"pie", topic:"イタリック語派"},
-          {id:"hellenic", parentid:"pie", topic:"ヘレニック語派"},
-          {id:"baltic-slavic", parentid:"pie", topic:"バルト・スラブ語派"},
-          {id:"indo-iranian", parentid:"pie", topic:"インド・イラン語派"},
-        {id:"uralic", parentid:"root", topic:"ウラル語族", direction:"left"},
-        {id:"turkic", parentid:"root", topic:"テュルク語族"},
-        {id:"niger-congo", parentid:"root", topic:"ニジェール・コンゴ語族"},
-        {id:"afro-asiatic", parentid:"root", topic:"アフロ・アジア語族"},
-
+<div class="container-fluid">
+  <div class="w-100" id="jsmind_container"></div>
+  <div class="row pt-4">
+    <div class="mx-auto">
+      <p>元の言葉は「{{.text}}」です！</p>
+      <table class="table table-hover">
         {{ range .Translation }}
-          {id: {{ .Code }} ,
-          parentid: {{ .Parent }},
-          topic: "<div class='response'>" + {{ .Response }} + "</div>\n<div class='language'>" + {{ .Language }} + "</div>"
-          },
-        {{ end }}
-      ]
-  };
-  var options = {
-      container: "jsmind_container",
-      editable: true,
-      theme: "primary"
-  };
-  var jm = new jsMind(options);
-  // show it
-  jm.show(mind);
-</script>
-{{end}}
+        <tr>
+          <td>{{ .Language }}</td>
+          <td>{{ .Response }}</td>
+        </tr>
+        {{end}}
+      </table>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    var mind = {
+        meta: {
+            name: "jsMind Translation",
+            author: "takuya.kometan@gmail.com",
+            version: "0.2"
+        },
+        format: "node_array",
+        data: [
+          {id:"root", isroot: true, topic: "元の言葉：" + {{.text}} },
+
+          {id:"pie", parentid:"root", topic:"インド・ヨーロッパ語族", direction:"left"},
+            {id:"germanic", parentid:"pie", topic:"ゲルマン語派"},
+            {id:"celtic", parentid:"pie", topic: "ケルト語派"},
+            {id:"italic", parentid:"pie", topic:"イタリック語派"},
+            {id:"hellenic", parentid:"pie", topic:"ヘレニック語派"},
+            {id:"baltic-slavic", parentid:"pie", topic:"バルト・スラブ語派"},
+            {id:"indo-iranian", parentid:"pie", topic:"インド・イラン語派"},
+          {id:"uralic", parentid:"root", topic:"ウラル語族", direction:"left"},
+          {id:"turkic", parentid:"root", topic:"テュルク語族"},
+          {id:"niger-congo", parentid:"root", topic:"ニジェール・コンゴ語族"},
+          {id:"afro-asiatic", parentid:"root", topic:"アフロ・アジア語族"},
+
+          {{ range .Translation }}
+            {id: {{ .Code }} ,
+            parentid: {{ .Parent }},
+            topic: "<div class='response'>" + {{ .Response }} + "</div>\n<div class='language'>" + {{ .Language }} + "</div>"
+            },
+          {{ end }}
+        ]
+    };
+    var options = {
+        container: "jsmind_container",
+        editable: true,
+        theme: "primary"
+    };
+    var jm = new jsMind(options);
+    // show it
+    jm.show(mind);
+  </script>
+  {{end}}
+</div>
