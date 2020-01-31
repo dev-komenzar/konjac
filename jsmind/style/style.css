@@ -1,0 +1,9 @@
+/* 自分で設定したCSS */
+div.language{
+    font-size: small;
+}
+
+div.response{
+    font-size: large;
+    font-weight: bold;
+}
