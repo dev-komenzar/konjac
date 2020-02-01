@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	translate "cloud.google.com/go/translate/apiv3"
@@ -140,9 +141,11 @@ func GetTranslation(c *gin.Context) {
 		if err != nil {
 			log.Fatalf("Failed to translate text: %v", err)
 		}
-		pairs[i].Response = translation.Translations[0].GetTranslatedText()
+		t := translation.Translations[0].GetTranslatedText()
+		pairs[i].Response = strings.ReplaceAll(t, "&#39;", "'") //フランス語でL'EgypteがL&#39;Egupteとなる問題
+		fmt.Println(pairs[i])                                   //デバッグ用
 	}
-	fmt.Println(pairs) //デバッグ用
+
 	// 履歴に残すために
 	info := getSessionInfo(c)
 	if info.IsSessionAlive == true {
