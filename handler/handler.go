@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"sync"
 	"time"
 
 	translate "cloud.google.com/go/translate/apiv3"
@@ -159,8 +160,11 @@ func GetTranslation(c *gin.Context) {
 	}
 	defer client.Close()
 
-	for i := range pairs {
+	var wg sync.WaitGroup
+	// ジョブ数をあらかじめ登録
+	wg.Add(len(pairs))
 
+	t := func(i int) {
 		request := &translatepb.TranslateTextRequest{
 			Contents:           texts,
 			TargetLanguageCode: pairs[i].Code,
@@ -175,7 +179,13 @@ func GetTranslation(c *gin.Context) {
 		t := translation.Translations[0].GetTranslatedText()
 		pairs[i].Response = strings.ReplaceAll(t, "&#39;", "'") //フランス語でL'EgypteがL&#39;Egupteとなる問題
 		fmt.Println(pairs[i])                                   //デバッグ用
+		wg.Done()                                               // Doneで完了を通知
 	}
+
+	for i := range pairs {
+		go t(i)
+	}
+	wg.Wait()
 
 	// 履歴に残すために
 	info := getSessionInfo(c)
