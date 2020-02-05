@@ -16,6 +16,14 @@ func main() {
 	router.Static("/templates", "./templates")
 	router.Static("/bootstrap-4", "./bootstrap-4")
 	router.Static("/jsmind", "./jsmind")
+	router.StaticFile("/favicon.ico", "./resources/favicon.ico")
+	router.StaticFile("/apple-touch-icon.png", "./resources/apple-touch-icon.png")
+	router.StaticFile("/favicon-32x32.png", "./resources/favicon-32x32.png")
+	router.StaticFile("/favicon-16x16.png", "./resources/favicon-16x16.png")
+	router.StaticFile("/manifest.json", "./resources/manifest.json")
+	router.StaticFile("/safari-pinned-tab.svg", "./resources/safari-pinned-tab.svg")
+	router.StaticFile("/android-chrome-192x192.png", "./resources/android-chrome-192x192.png")
+	router.StaticFile("/android-chrome-256x256.png", "./resources/android-chrome-256x256.png")
 
 	router.HTMLRender = render.LoadTemplates("./templates") // 事前にテンプレートをロード multitemplateで
 	store := cookie.NewStore([]byte("secret"))
