@@ -2157,6 +2157,7 @@
     jm.graph_canvas = function (view) {
         this.opts = view.opts;
         this.e_canvas = $c('canvas');
+        this.e_canvas.setAttribute('id', 'mindmap_canvas');
         this.canvas_ctx = this.e_canvas.getContext('2d');
         this.size = { w: 0, h: 0 };
     };

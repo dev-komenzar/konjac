@@ -1,6 +1,9 @@
 {{define "content"}}
 <div class="container-fluid mt-3">
   <div class="w-100" id="jsmind_container"></div>
+  <input type="button" class="btn btn-primary mt-1" value="画像に変換" onclick="chgImg()">
+  <button class="btn btn-primary mt-1" onclick="screen_shot();">screenshot</button>
+  <div><img id="newImg"></div>
   <div class="row pt-4">
     <div class="mx-auto">
       <p>元の言葉は「{{.text}}」です！</p>
@@ -61,6 +64,17 @@
     var jm = new jsMind(options);
     // show it
     jm.show(mind);
+
+    // canvas to png
+    var cvs = document.getElementById("mindmap_canvas");
+    function chgImg(){
+      var png = cvs.toDataURL();
+      document.getElementById("newImg").src = png;
+    }
+
+    function screen_shot(){
+        jm.screenshot.shootDownload();
+    }
   </script>
 </div>
 {{end}}
